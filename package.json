@@ -1,20 +1,17 @@
 {
   "name": "app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marizmendi/app.git"
-  },
-  "author": "marizmendi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/marizmendi/app/issues"
-  },
-  "homepage": "https://github.com/marizmendi/app#readme"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "helmet": "^4.6.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "^3.0.2"
+  }
 }
