@@ -14,8 +14,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(helmet())
-logger.token('real-remote-addr', function (req, res) { return req.headers['cf-connecting-ip'] })
-app.use(logger(':real-remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'));
+logger.token('remote-addr', function (req, res) {
+  return req.headers['cf-connecting-ip'] ? req.headers['cf-connecting-ip'] : req.ip ? req.ip : req.socket.remoteAddress
+})
+app.use(logger('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
