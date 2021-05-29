@@ -1,4 +1,4 @@
-name: bettercap
+name: app
 
 on:
   push:
