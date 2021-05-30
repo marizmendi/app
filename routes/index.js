@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/ip', function(req, res, next) {
-  res.locals.ip = req.ip
+  res.locals.ip = req.headers["cf-connecting-ip"]
   res.render('ip');
 });
 
