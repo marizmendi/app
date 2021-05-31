@@ -7,6 +7,11 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/edu', function(req, res, next) {
+  res.locals.message = "Chupamela Edu"
+  res.render('message');
+});
+
 router.get('/ip', function(req, res, next) {
   res.locals.ip = req.headers["cf-connecting-ip"]
   res.render('ip');
