@@ -7,19 +7,8 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/message/:name', function(req, res, next) {
-  res.locals.message = "Chupamela " + req.params.name
-  res.render('message');
-});
-
-router.get('/edu', function(req, res, next) {
-  res.locals.message = "Chupamela Edu"
-  res.render('message');
-});
-
 router.get('/ip', function(req, res, next) {
-  res.locals.ip = req.headers["cf-connecting-ip"]
-  res.render('ip');
+  res.send(req.headers["cf-connecting-ip"])
 });
 
 module.exports = router;
