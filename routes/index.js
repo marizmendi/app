@@ -11,4 +11,9 @@ router.get('/ip', function(req, res, next) {
   res.send(req.ip)
 });
 
+router.get('/maria', function(req, res, next) {
+  res.locals.title = 'Maria'
+  res.render('maria');
+});
+
 module.exports = router;
