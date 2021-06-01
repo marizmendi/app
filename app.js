@@ -14,6 +14,9 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// set trust proxy
+app.set('trust proxy', true)
+
 app.use(helmet())
 logger.token('remote-addr', function (req, res) {
   return req.headers['cf-connecting-ip'] ? req.headers['cf-connecting-ip'] : req.ip ? req.ip : req.socket.remoteAddress

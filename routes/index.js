@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/ip', function(req, res, next) {
-  res.send(req.headers["cf-connecting-ip"])
+  res.send(req.ip)
 });
 
 module.exports = router;
