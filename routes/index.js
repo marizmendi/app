@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/message/:name', function(req, res, next) {
-  res.locals.message = "Chupamela " + req.params.id
+  res.locals.message = "Chupamela " + req.params.name
   res.render('message');
 });
 
