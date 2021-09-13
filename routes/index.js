@@ -16,7 +16,7 @@ router.get('/maria', function (req, res, next) {
   res.render('maria');
 });
 
-app.post('/my-webhook-path', (req, res) => {
+router.post('/my-webhook-path', (req, res) => {
   if (
     req.body.request === undefined ||
     req.body.request.uid === undefined
