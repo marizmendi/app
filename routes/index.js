@@ -46,9 +46,9 @@ router.post('/mutating-webhook', (req, res) => {
   }
   const { request: { uid } } = req.body;
   const patch = {
-    "op": "replace",
-    "path": "/spec/containers/0/image",
-    "value": "debian"
+    op: "replace",
+    path: "/spec/containers/0/image",
+    value: "debian"
   }
   response_json = {
     apiVersion: 'admission.k8s.io/v1',
@@ -56,6 +56,7 @@ router.post('/mutating-webhook', (req, res) => {
     response: {
       uid,
       allowed: true,
+      patchType: "JSONPatch",
       patch: patch
     },
   }
