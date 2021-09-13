@@ -45,20 +45,22 @@ router.post('/mutating-webhook', (req, res) => {
     return;
   }
   const { request: { uid } } = req.body;
-  const patch = {
+  const jsonPatch = [{
     op: "replace",
     path: "/spec/containers/0/image",
     value: "debian"
-  }
+  }]
+
   response_json = {
-    apiVersion: 'admission.k8s.io/v1',
-    kind: 'AdmissionReview',
+    kind: req.body.kind,
+    apiVersion: req.body.apiVersion,
+    request: req.body.request,
     response: {
-      uid,
+      uid: uid,
       allowed: true,
-      patchType: "JSONPatch",
-      patch: patch
-    },
+      patch: base64.encode(JSON.stringify(jsonPatch)),
+      patchType: "JSONPatch"
+    }
   }
   console.log(JSON.stringify(response_json)); // DEBUGGING
   res.send(response_json);
