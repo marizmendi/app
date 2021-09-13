@@ -44,14 +44,13 @@ router.post('/mutating-webhook', (req, res) => {
     res.status(400).send();
     return;
   }
-  console.log(JSON.stringify(req.body)); // DEBUGGING
   const { request: { uid } } = req.body;
   const patch = {
     "op": "replace",
     "path": "/spec/containers/0/image",
     "value": "debian"
   }
-  res.send({
+  response_json = {
     apiVersion: 'admission.k8s.io/v1',
     kind: 'AdmissionReview',
     response: {
@@ -59,7 +58,9 @@ router.post('/mutating-webhook', (req, res) => {
       allowed: true,
       patch: patch
     },
-  });
+  }
+  console.log(JSON.stringify(response_json)); // DEBUGGING
+  res.send(response_json);
 });
 
 module.exports = router;
