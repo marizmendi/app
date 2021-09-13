@@ -51,6 +51,8 @@ router.post('/mutating-webhook', (req, res) => {
     value: "debian"
   }]
 
+  const jsonPatchEncoded = Buffer.from(JSON.stringify(jsonPatch)).toString('base64');
+
   response_json = {
     kind: req.body.kind,
     apiVersion: req.body.apiVersion,
@@ -58,7 +60,7 @@ router.post('/mutating-webhook', (req, res) => {
     response: {
       uid: uid,
       allowed: true,
-      patch: base64.encode(JSON.stringify(jsonPatch)),
+      patch: jsonPatchEncoded,
       patchType: "JSONPatch"
     }
   }
