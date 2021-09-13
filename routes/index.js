@@ -24,7 +24,7 @@ router.post('/my-webhook-path', (req, res) => {
     res.status(400).send();
     return;
   }
-  console.log(req.body); // DEBUGGING
+  console.log(JSON.stringify(req.body)); // DEBUGGING
   const { request: { uid } } = req.body;
   res.send({
     apiVersion: 'admission.k8s.io/v1',
