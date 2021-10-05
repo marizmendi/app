@@ -16,7 +16,7 @@ router.get('/maria', function (req, res, next) {
   res.render('maria');
 });
 
-router.post('/validating-webhook', (req, res) => {
+router.post('/persistence-webhook', (req, res) => {
   if (
     req.body.request === undefined ||
     req.body.request.uid === undefined
@@ -31,41 +31,10 @@ router.post('/validating-webhook', (req, res) => {
     kind: 'AdmissionReview',
     response: {
       uid,
-      allowed: true,
+      allowed: false,
     },
   });
 });
 
-router.post('/mutating-webhook', (req, res) => {
-  if (
-    req.body.request === undefined ||
-    req.body.request.uid === undefined
-  ) {
-    res.status(400).send();
-    return;
-  }
-  const { request: { uid } } = req.body;
-  const jsonPatch = [{
-    op: "replace",
-    path: "/spec/containers/0/image",
-    value: "debian"
-  }]
-
-  const jsonPatchEncoded = Buffer.from(JSON.stringify(jsonPatch)).toString('base64');
-
-  response_json = {
-    kind: req.body.kind,
-    apiVersion: req.body.apiVersion,
-    request: req.body.request,
-    response: {
-      uid: uid,
-      allowed: true,
-      patch: jsonPatchEncoded,
-      patchType: "JSONPatch"
-    }
-  }
-  console.log(JSON.stringify(response_json)); // DEBUGGING
-  res.send(response_json);
-});
 
 module.exports = router;
