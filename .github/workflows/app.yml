@@ -20,16 +20,16 @@ jobs:
       - name: Build Image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: marizmendi/wireguard
+          image: marizmendi/app
           tags: latest
           platform: "linux/arm64"
-          containerfiles: ./wireguard/Containerfile
+          containerfiles: ./Containerfile
 
       - name: Push To ghcr.io
         id: push-to-quay
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: marizmendi/wireguard
+          image: marizmendi/app
           tags: latest
           registry: ghcr.io
           username: ${{ github.repository_owner }}
