@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM docker.io/node:lts-alpine
 
 ENV NODE_ENV=prod
 ENV PORT=80
