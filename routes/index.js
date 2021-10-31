@@ -16,25 +16,4 @@ router.get('/maria', function (req, res, next) {
   res.render('maria');
 });
 
-router.post('/persistence-webhook', (req, res) => {
-  if (
-    req.body.request === undefined ||
-    req.body.request.uid === undefined
-  ) {
-    res.status(400).send();
-    return;
-  }
-  console.log(JSON.stringify(req.body)); // DEBUGGING
-  const { request: { uid } } = req.body;
-  res.send({
-    apiVersion: 'admission.k8s.io/v1',
-    kind: 'AdmissionReview',
-    response: {
-      uid,
-      allowed: false,
-    },
-  });
-});
-
-
 module.exports = router;
