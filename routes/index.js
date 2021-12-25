@@ -18,7 +18,7 @@ router.get('/maria', function (req, res, next) {
 
 router.get('/nacho', function (req, res, next) {
   res.locals.title = 'Nacho'
-  res.render('Nacho huele a caca');
+  res.render('nacho');
 });
 
 module.exports = router;
